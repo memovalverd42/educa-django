@@ -1,0 +1,103 @@
+[
+{
+  "model": "courses.subject",
+  "pk": 1,
+  "fields": {
+    "created": "2023-10-03",
+    "updated": "2023-10-03",
+    "title": "Musica",
+    "slug": "musica"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 2,
+  "fields": {
+    "created": "2023-10-03",
+    "updated": "2023-10-03",
+    "title": "Matematicas",
+    "slug": "matematicas"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 3,
+  "fields": {
+    "created": "2023-10-03",
+    "updated": "2023-10-03",
+    "title": "Historia",
+    "slug": "historia"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 4,
+  "fields": {
+    "created": "2023-10-03",
+    "updated": "2023-10-03",
+    "title": "Ciencias",
+    "slug": "ciencias"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 5,
+  "fields": {
+    "created": "2023-10-03",
+    "updated": "2023-10-03",
+    "title": "Arte",
+    "slug": "arte"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 6,
+  "fields": {
+    "created": "2023-10-03",
+    "updated": "2023-10-03",
+    "title": "Literatura",
+    "slug": "literatura"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 7,
+  "fields": {
+    "created": "2023-10-03",
+    "updated": "2023-10-03",
+    "title": "Física",
+    "slug": "fisica"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 8,
+  "fields": {
+    "created": "2023-10-03",
+    "updated": "2023-10-03",
+    "title": "Química",
+    "slug": "quimica"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 9,
+  "fields": {
+    "created": "2023-10-03",
+    "updated": "2023-10-03",
+    "title": "Geografía",
+    "slug": "geografia"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 10,
+  "fields": {
+    "created": "2023-10-03",
+    "updated": "2023-10-03",
+    "title": "Economía",
+    "slug": "economia"
+  }
+}
+
+]
