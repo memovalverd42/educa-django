@@ -1,8 +1,6 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %}
-  My courses
-{% endblock %}
+{% block title %}My courses{% endblock %}
 
 {% block content %}
   <h1>My courses</h1>
@@ -11,19 +9,20 @@
       <div class="course-info">
         <h3>{{ course.title }}</h3>
         <p>
-          <a href="{% url 'course_edit' course.id %}">Edit</a>
-          <a href="{% url 'course_delete' course.id %}">Delete</a>
-          <a href="{% url 'course_module_update' course.id %}">Edit modules</a>
+          <a href="{% url "course_edit" course.id %}">Edit</a>
+          <a href="{% url "course_delete" course.id %}">Delete</a>
+          <a href="{% url "course_module_update" course.id %}">Edit modules</a>
           {% if course.modules.count > 0 %}
-            <a href="{% url 'module_content_list' course.modules.first.id %}">Manage contents</a>
+            <a href="{% url "module_content_list" course.modules.first.id %}">
+            Manage contents</a>
           {% endif %}
         </p>
       </div>
-      {% empty %}
+    {% empty %}
       <p>You haven't created any courses yet.</p>
     {% endfor %}
     <p>
-      <a href="{% url 'course_create' %}" class="button">Create new course</a>
+      <a href="{% url "course_create" %}" class="button">Create new course</a>
     </p>
   </div>
 {% endblock %}

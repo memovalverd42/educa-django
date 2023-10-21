@@ -2,11 +2,26 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
+
 from ..core.models import TimeStampedModel
 from .fields import OrderField
 
-# Create your models here.
 class Subject(TimeStampedModel):
+    """
+    Modelo de un Tema para un Curso
+
+    Attributes:
+        title (str): El título de la materia.
+        slug (str): Una versión amigable para URL del título.
+
+    Meta:
+        ordering (list of str): La lista de campos por los que se ordenarán los
+        registros de materias (por defecto, se ordenarán por título).
+
+    Methods:
+        __str__: Devuelve una representación legible en cadena de la materia.
+
+    """
     title = models.CharField(max_length=200)
     slug  = models.SlugField(max_length=200, unique=True)
     
@@ -15,9 +30,27 @@ class Subject(TimeStampedModel):
         
     def __str__(self) -> str:
         return self.title
-    
-    
+
 class Course(TimeStampedModel):
+    """
+    Representa un curso en un sistema educativo.
+
+    Attributes:
+        owner (User): El usuario propietario del curso.
+        subject (Subject): La materia a la que está asociado el curso.
+        title (str): El título del curso.
+        slug (str): Una versión amigable para URL del título.
+        overview (str): Una descripción general del curso.
+
+    Meta:
+        ordering (list of str): La lista de campos por los que se ordenarán los
+        registros de cursos (por defecto, se ordenarán por fecha de creación descendente).
+
+    Methods:
+        __str__: Devuelve una representación legible en cadena del curso.
+
+    """
+    
     owner = models.ForeignKey(User, 
                               related_name='courses_created',
                               on_delete=models.CASCADE)
@@ -87,7 +120,6 @@ class ItemBase(TimeStampedModel):
         
     def __str__(self) -> str:
         return self.title
-    
     
 class Text(ItemBase):
     content = models.TextField()

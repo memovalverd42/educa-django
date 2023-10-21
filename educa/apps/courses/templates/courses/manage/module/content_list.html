@@ -1,10 +1,9 @@
-
 {% extends "base.html" %}
 {% load course %}
 
 {% block title %}
-    Module {{ module.order|add:1 }}: {{ module.title }}
-{% endblock title %}
+  Module {{ module.order|add:1 }}: {{ module.title }}
+{% endblock %}
 
 {% block content %}
 {% with course=module.course %}
@@ -71,54 +70,54 @@
 
 {% block include_js %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5sortable/0.13.3/html5sortable.min.js"></script>
-{% endblock include_js %}
+{% endblock %}
 
 {% block domready %}
+  var options = {
+      method: 'POST',
+      mode: 'same-origin'
+  }
 
-let options = {
-  method: 'POST',
-  mode: 'same-origin'
-}
+  const moduleOrderUrl = '{% url "module_order" %}';
 
-const moduleOrderUrl = '{% url "module_order" %}';
+  sortable('#modules', {
+    forcePlaceholderSize: true,
+    placeholderClass: 'placeholder'
+  })[0].addEventListener('sortupdate', function(e) {
 
-sortable('#modules', {
-  forcePlaceholderSize: true,
-  placeholderClass: 'placeholder'
-})[0].addEventListener('sortupdate', () => {
-  modulesOrder = {};
-  let modules = document.querySelectorAll('#modules li');
-  modules.forEach(( module, index ) => {
-    // Actualizar el index del module
-    modulesOrder[module.dataset.id] = index;
-    // Actualizar index en el HTML element
-    module.querySelector('.order').innerHTML = index + 1;
-    // Agregar nuevo orden a la peticion http
-    options['body'] = JSON.stringify(modulesOrder);
+    modulesOrder = {};
+    var modules = document.querySelectorAll('#modules li');
+    modules.forEach(function (module, index) {
+      // update module index
+      modulesOrder[module.dataset.id] = index;
+      // update index in HTML element
+      module.querySelector('.order').innerHTML = index + 1;
+      // add new order to the HTTP request options
+      options['body'] = JSON.stringify(modulesOrder);
 
-    // enviar peticion
-    fetch(moduleOrderUrl, options)
+      // send HTTP request
+      fetch(moduleOrderUrl, options)
+    });
   });
-})
 
+  const contentOrderUrl = '{% url "content_order" %}';
 
-const contentOrderUrl = '{% url "content_order" %}';
+  sortable('#module-contents', {
+    forcePlaceholderSize: true,
+    placeholderClass: 'placeholder'
+  })[0].addEventListener('sortupdate', function(e) {
 
-sortable('#module_contents', {
-  forcePlaceholderSize: true,
-  placeholderClass: 'placeholder'
-})[0].addEventListener('sortupdate', () => {
-  contentOrder = {};
-  let contents = document.querySelectorAll('#module_contents div');
-  contents.forEach(( content, index ) => {
-    // Actualizar el index del content
-    contentOrder[content.dataset.id] = index;
-    // Agregar nuevo orden a la peticion http
-    options['body'] = JSON.stringify(contentOrder);
+    contentOrder = {};
+    var contents = document.querySelectorAll('#module-contents div');
+    contents.forEach(function (content, index) {
+      // update content index
+      contentOrder[content.dataset.id] = index;
+      // add new order to the HTTP request options
+      options['body'] = JSON.stringify(contentOrder);
 
-    // enviar peticion
-    fetch(contentOrderUrl, options)
+      // send HTTP request
+      fetch(contentOrderUrl, options)
+    });
   });
-})
 
-{% endblock domready %}
+{% endblock %}
