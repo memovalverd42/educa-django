@@ -36,8 +36,6 @@ class Course(TimeStampedModel):
     def __str__(self) -> str:
         return self.title
     
-    
-    
 class Module(models.Model):
     course = models.ForeignKey(Course,
                                related_name='modules', 
@@ -52,8 +50,6 @@ class Module(models.Model):
     def __str__(self) -> str:
         return f'{self.order}. {self.title}'
 
-    
-    
 class Content(models.Model):
     module = models.ForeignKey(Module, 
                                related_name='contents',
