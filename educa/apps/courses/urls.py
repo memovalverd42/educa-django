@@ -26,6 +26,14 @@ urlpatterns = [
      path('<pk>/module',
          views_courses.CourseModuleUpdateView.as_view(),
          name='course_module_update'),
+     
+     path('subject/<slug:subject>/',
+          views_courses.CourseListView.as_view(),
+          name='course_list_subject'),
+     
+     path('<slug:slug>/',
+          views_courses.CourseDetailView.as_view(),
+          name='course_detail'),
     
     # URLS de Contenido:
     
