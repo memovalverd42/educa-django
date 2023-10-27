@@ -48,6 +48,9 @@ INSTALLED_APPS = [
     'embed_video',
     'debug_toolbar',
     'redisboard',
+    'rest_framework',
+    'apps.chat.apps.ChatConfig',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +84,9 @@ TEMPLATES = [
     },
 ]
 
+# ASGI_APPLICATION = 'educa.routing.application'
 WSGI_APPLICATION = 'config.wsgi.application'
+ASGI_APPLICATION = 'config.asgi.application'
 
 
 # Database
@@ -146,6 +151,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# REST framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 # memecache settings
 CACHES = {
@@ -159,3 +170,13 @@ CACHES = {
 CACHE_MIDDLEWARE_ALIAS = 'default'
 CACHE_MIDDLEWARE_SECONDS = 60 * 15 # 15 minutos
 CACHE_MIDDLEWARE_KEY_PREFIX = 'educa'
+
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1', 6379)],
+        },
+    },
+}

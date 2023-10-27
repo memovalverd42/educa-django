@@ -30,6 +30,8 @@ urlpatterns = [
     path('', CourseListView.as_view(), name='course_list'),
     path('students/', include('apps.students.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
+    path('api/', include('apps.courses.api.urls', namespace='api')),
+    path('chat/', include('apps.chat.urls', namespace='chat')),
 ]
 
 if settings.DEBUG:
